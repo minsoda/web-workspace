@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <h2>Form Data..</h2>
+    <form action="fs" method="post">
+      <div>
+        <label for="userId">ID : </label>
+        <input type="text" name="userId" />
+      </div>
+      <div>
+        <label for="userPwd">PASSWORD : </label>
+        <input type="password" name="userPwd" id="userPwd" />
+      </div>
+      <div>
+        <h3>좋아하는 메뉴..</h3>
+        <label>
+          <input type="checkbox" name="menu" value="삼겹살" /> 삼겹살
+        </label>
+
+        <label>
+          <input type="checkbox" name="menu" value="돈까스" /> 돈까스
+        </label>
+
+        <label>
+          <input type="checkbox" name="menu" value="파스타" /> 파스타
+        </label>
+
+        <label>
+          <input type="checkbox" name="menu" value="닭볶음탕" /> 닭볶음탕
+        </label>
+      </div>
+
+      <div>
+        <h3>당신의 성별은?</h3>
+        <label>
+          <input type="radio" name="gender" value="M" />남자
+          <input type="radio" name="gender" value="F" />여자
+        </label>
+      </div>
+      <input type="submit" value="DataSend" />
+
+      <!-- 
+        패키지 : servlet.form
+        Servlet : HttpFormServlet  (클래스이름)
+        service 메소드를 통해 아이디, 패스워드 출력
+
+        name : 키값! action : fs는 url-pattern에 동일하게 변경
+        servlet은 자바니까 자바 src에서 servlet만들기
+        web.xml 에서 fs로 변경
+    --></form>
+  </body>
+</html>
