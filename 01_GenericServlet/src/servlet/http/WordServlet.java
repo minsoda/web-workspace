@@ -8,15 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class WordServlet
- */
+
 public class WordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	// index.html에서 name=word(key값)설정 후 web.xml에서 <url-pattern>/word</url-pattern>로 변경하면
 	// 단어 입력 시 word 페이지로 넘어가서 Client Send Data...가 출력됨
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

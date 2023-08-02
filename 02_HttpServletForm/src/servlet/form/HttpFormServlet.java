@@ -8,15 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class HttpFormServlet
- */
+
 public class HttpFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 //		한글처리..양방향!
@@ -43,9 +38,11 @@ public class HttpFormServlet extends HttpServlet {
 		out.println("<ul>");
 		for(String menu : menuList) {
 			out.println("<li>" + menu + "</li>");
+			
 		}
 		out.println("</ul>");
 		
+	
 		
 		out.close();
 		
