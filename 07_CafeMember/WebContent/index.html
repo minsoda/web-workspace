@@ -76,7 +76,10 @@
     </div>
 
     <script>
-      const age = document.querySelector("#age");
+    console.log(document.frm);
+
+      // const age = document.querySelector("#age"); document.frm.value 이걸로도 가능하다.
+
 
       //   function ageCheck() {
       //     const regExp = /^[0-9]{1,3}$/;
@@ -93,11 +96,26 @@
       //   }
 
       function checkData() {
-        const regExp = /^[0-9]{1,3}$/;
-        if (!regExp.test(age.value)) {
-          alert("다시");
-          return false;
+        // const regExp = /^[0-9]+$/;
+        const age = document.frm.age.value;
+        
+        if(isNaN(age)){
+        	alert('다시');
+        	return false;
+        } else {
+        	return true;
         }
+      //  console.log(Number(age)); nan 라고 뜸!
+        
+      //  return false;
+        
+       // if (regExp.test(document.frm.age.value)) {
+        	//return true;
+         
+       // }else {
+        	// alert("다시");
+            // return false;
+		//}
       }
     </script>
   </body>

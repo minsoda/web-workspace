@@ -28,4 +28,28 @@
     <filter-name>Filter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VewMemberServlet</display-name>
+    <servlet-name>VewMemberServlet</servlet-name>
+    <servlet-class>servlet.controller.VewMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VewMemberServlet</servlet-name>
+    <url-pattern>/view</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchServlet</display-name>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>servlet.controller.SearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
+  <error-page>
+  <error-code>404</error-code>
+  <location>/404error.html</location>
+  </error-page>
 </web-app>
