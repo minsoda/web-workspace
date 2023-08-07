@@ -8,9 +8,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpFilter;
 
-/**
- * Servlet Filter implementation class Filter
- */
+
 public class Filter extends HttpFilter implements javax.servlet.Filter {
        
     

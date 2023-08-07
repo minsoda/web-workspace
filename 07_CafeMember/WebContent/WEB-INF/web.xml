@@ -30,12 +30,12 @@
   </filter-mapping>
   <servlet>
     <description></description>
-    <display-name>VewMemberServlet</display-name>
-    <servlet-name>VewMemberServlet</servlet-name>
-    <servlet-class>servlet.controller.VewMemberServlet</servlet-class>
+    <display-name>ViewMemberServlet</display-name>
+    <servlet-name>ViewMemberServlet</servlet-name>
+    <servlet-class>servlet.controller.ViewMemberServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>VewMemberServlet</servlet-name>
+    <servlet-name>ViewMemberServlet</servlet-name>
     <url-pattern>/view</url-pattern>
   </servlet-mapping>
   <servlet>
