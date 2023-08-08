@@ -17,7 +17,6 @@ import servlet.model.vo.MemberDTO;
 
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ServletContext context;  
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 폼값을 가져온다. (DAO에게 넘길 값을 가져와야한당)
@@ -37,9 +36,10 @@ public class RegisterServlet extends HttpServlet {
 		dto.setAddress(address);
 		
 		// 3. DAO와 연결
-		MemberDAO dao = new MemberDAO();
+//		MemberDAO dao = new MemberDAO();// 싱글톤패턴
 		try {
-			dao.registerMember(dto);
+//			dao.registerMember(dto);// 싱글톤패턴
+			MemberDAO.getInstance().registerMember(dto);
 			
 		// 4. 데이터 바인딩 - session에 데이터 바인딩 : 회원가입과 함께 넘긴다는 뜻
 			HttpSession session = request.getSession();
