@@ -25,8 +25,7 @@
 			<td>${item.name}</td>
 			<td>${item.address}</td>
 			</tr>
-		
-		
+
 		</c:forEach>
 		
 	</table>
