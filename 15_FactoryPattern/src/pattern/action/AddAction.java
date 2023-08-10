@@ -15,6 +15,7 @@ public class AddAction implements Action{
 		 * 3. DAO 리턴받고
 		 * 4. 리턴된 값 바인딩
 		 * 5. path를 최종적으로 리턴(네비게이션)
+		 * 
 		 * */
 		
 		System.out.println("INSERT OK!");
