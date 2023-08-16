@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<body>
+	
+	<h2>Register Form..</h2>
+	
+	<form id="frm">
+		NAME : <input type="text" name="name" id="name"><br>
+		ADDR : <input type="text" name="addr" id="addr"><br>
+		<input type="button" value="가입" id="regBtn">
+	</form>
+	
+	<div id="regView"></div>
+	
+	<!-- post 방식 / SerialAjax -->
+	<script>
+	$('#regBtn').click(function(){
+		const name = $('#name').val();
+		const addr = $('#addr').val();
+		
+		$.ajax({
+			type: "post",
+			url: "SerialAjax",
+			// 추가될때마다 추가할수 없으니! data: "name="+name+"&addr="+addr,
+			// 아래의 방식으로 해주면 폼 안의 값들이 전부 넘어감!
+			data: $('#frm').serialize(), 
+			
+			success: function(result){
+				$('#regView').html(result).css({
+					'background': 'pink', 'color': 'white'
+				});
+			}
+		})
+	});
+	</script>
+</body>
+</html>
