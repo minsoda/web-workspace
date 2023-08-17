@@ -31,10 +31,11 @@ public class DispatcherServlet extends HttpServlet {
 		// find.do
 		
 		Controller controller = HandlerMapping.getInstance().createController(command);
+		ModelAndView mv = null;
 		
 		try {
 			// ModelAndView에 path가 포함되어 있음
-			ModelAndView mv = controller.handle(request, response);
+			 mv = controller.handle(request, response);
 			
 			if(mv!=null) {
 				if(mv.isRedirect()) {

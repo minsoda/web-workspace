@@ -50,15 +50,10 @@ public class ItemDAO implements ItemDAOTemplate{
 		ArrayList<Item> list = new ArrayList<>();
 		
 		while(rs.next()) {
-			Item item = new Item();
-			item.setItemId(rs.getInt("ITEM_ID"));
-			item.setItemName(rs.getString("ITEM_NAME"));
-			item.setPrice(rs.getInt("PRICE"));
-			item.setDescription(rs.getString("DESCRIPTION"));
-			item.setPictureUrl(rs.getString("PICTURE_URL"));
-			item.setCount(rs.getInt("COUNT"));
-			list.add(item);
+			// 이렇게도 가능!
+			list.add(new Item(rs.getInt(1),rs.getString(2) ,rs.getInt(3), rs.getString(4),rs.getString(5),rs.getInt(6)));
 		}
+		
 		closeAll(rs,ps,conn);
 		return list;
 	}
@@ -75,12 +70,7 @@ public class ItemDAO implements ItemDAOTemplate{
 		
 		Item item = null;
 		if(rs.next()) {
-			item.setItemId(rs.getInt("ITEM_ID"));
-			item.setItemName(rs.getString("ITEM_NAME"));
-			item.setPrice(rs.getInt("PRICE"));
-			item.setDescription(rs.getString("DESCRIPTION"));
-			item.setPictureUrl(rs.getString("PICTURE_URL"));
-			item.setCount(rs.getInt("COUNT"));
+			item = new Item(rs.getInt(1),rs.getString(2) ,rs.getInt(3), rs.getString(4),rs.getString(5),rs.getInt(6));
 			
 		}
 		closeAll(rs,ps,conn);
@@ -91,20 +81,19 @@ public class ItemDAO implements ItemDAOTemplate{
 	public boolean updateRecodeCount(int itemId) throws SQLException {
 		Connection conn = getConnection();
 		
-		String query = "UPDATE ITEM SET COUNT =? WHERE ITEM_ID =?";
-		PreparedStatement st = conn.prepareStatement(query);
+		String query = "UPDATE ITEM SET COUNT = COUNT+1 WHERE ITEM_ID =?";
+		PreparedStatement ps = conn.prepareStatement(query);
 		
-		int count = getItem(itemId).getCount();
+		ps.setInt(1, itemId);
+
 		
-		st.setInt(1, ++count);
-		st.setInt(2, itemId);
+		int row = ps.executeUpdate();
 		
-		int result = st.executeUpdate();
+		boolean result = false;
 		
-		if(result == 1) {
-			return true;
-		}
-		return false;
+		if(row == 1) result = true;
+		// row > 0
+		return result;
 	}
 
 }
