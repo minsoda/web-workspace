@@ -41,7 +41,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         장바구니 담기
       </button>
       <a href="cartList.jsp">장바구니 확인</a>
-      <a href="itemList.jsp">상품 목록 보기</a>
+      <a href="itemList.do">상품 목록 보기</a>
     </p>
     <div id="desc">
       <img src="${item.pictureUrl}" />

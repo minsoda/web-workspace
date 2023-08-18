@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
 	<properties>
 		<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin@localhost:1521:xe"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
 		<property name="username" value="sample"/>
 		<property name="password" value="SAMPLE"/>
 	</properties>
@@ -29,7 +28,7 @@
 			 -->
 			<transactionManager type="JDBC"/>
 			
-			<!-- dataSource는 POOLED와 UNPOOLED 둘 중 하나를 선택할 수 있음(ConnectionPool 사용여부) 
+			<!-- dataSource는 POOLED와 UNPOOLED 둘 중 하나를 선택할 수 있음(ConnectionPool 사용여부)
 				>> ConnectionPool : Connection 객체를 담아둘 수 있는 영역
 									한번 생성된 Connection 객체를 담아두면 재사용해서 쓸 수 있음.
 				- POOLED : 사용하겠다.

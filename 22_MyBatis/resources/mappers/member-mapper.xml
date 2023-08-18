@@ -3,7 +3,7 @@
 <mapper namespace="memberMapper">
 	<!-- namespace : 해당 mapper 파일의 고유한 별칭 -->
 	
-	<!-- 
+	<!--
 		* DML문일 경우
 		<insert|update|delete id="식별자" parameterType="전달받을 자바타입(풀 클래스명)|별칭">
 		</insert|update|delete>
@@ -22,21 +22,25 @@
 		VALUES(#{id}, #{password}, #{name}, #{address})
 	</insert>
 	
-	<!-- showAllMember, findByIdMember, login, updateMember -->
-	<select id="showAllMember" parameterType="Member">
-		SELECT * FROM member
+	<!-- * 인식못해서 전부 작성해줘야함 -->
+	<select id="showAllMember" resultType="Member">
+		SELECT id, password, name, address FROM member
 	</select>
 	
-	<select id="findByIdMember" parameterType="id">
-		SELECT * FROM member WHERER #{id}
-	</select> 
+	<!-- * 인식 가능 -->
+	<select id="findByIdMember" parameterType="String" resultType="Member">
+		SELECT id, password, name, address FROM member WHERE id=#{id}
+	</select>
 	
-	<select id="login" parameterType="id,password">
-		SELECT * FROM member WHERE #{id}, #{password}
+	<!-- id,password memeber로 담을수있으니까! -->
+	<select id="login" parameterType="Member" resultType="Member">
+		SELECT id, password, name, address
+		FROM member
+		WHERE id=#{id} AND password=#{password}
 	</select>
 	
 	<update id="updateMember" parameterType="Member">
-		UPDATE member SET #{id}, #{password}, #{name}, #{address}
+		UPDATE member SET id=#{id}, password=#{password}, name=#{name}, address=#{address} WHERE ID = #{id}
 	</update>
 	
 </mapper>
