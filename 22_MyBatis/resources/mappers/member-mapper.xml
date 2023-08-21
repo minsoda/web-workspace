@@ -3,6 +3,20 @@
 <mapper namespace="memberMapper">
 	<!-- namespace : 해당 mapper 파일의 고유한 별칭 -->
 	
+	<!-- resultMap : 조회한 결과를 객체와 Row 간의 1:1 매칭이 아닌, 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
+	<!-- type에는 매칭시킬것을 작성 -->
+	<resultMap type="Member" id="memberMap">
+	 		<!--
+	 		property = 자바 필드 변수 이름/ column = DB 해당 컬럼
+	 		id는 primary key / result는 일반 컬럼
+	 		 -->
+	 		 <id property="id" column="memberid"/>
+	 		 <result property="password" column="memberpassword"/>
+	 		 <result property="name" column="membername"/>
+	 		 <result property="address" column="memberaddr"/>
+	 		
+	 </resultMap>
+	
 	<!--
 		* DML문일 경우
 		<insert|update|delete id="식별자" parameterType="전달받을 자바타입(풀 클래스명)|별칭">
@@ -22,14 +36,82 @@
 		VALUES(#{id}, #{password}, #{name}, #{address})
 	</insert>
 	
-	<!-- * 인식못해서 전부 작성해줘야함 -->
-	<select id="showAllMember" resultType="Member">
-		SELECT id, password, name, address FROM member
+	<!-- * 인식못해서 전부 작성해줘야함, member2를 만들어서 컬럼명이 다를때 resultmap의 id인 memberMap이 들어옴-->
+	<select id="showAllMember" resultMap="memberMap">
+		SELECT memberid, memberpassword, membername, memberaddr FROM member2
 	</select>
 	
-	<!-- * 인식 가능 -->
-	<select id="findByIdMember" parameterType="String" resultType="Member">
-		SELECT id, password, name, address FROM member WHERE id=#{id}
+	<!-- 
+		* 마이바티스 동적쿼리
+		- 마이바티스의 강력한 기능 중 하나
+		- 마이바티스에서는 쿼리를 동적으로 제어할 수 있는 요소(Element)들을 제공한다.
+		- 동적 쿼리 요소들을 사용하여 좀 더 쉽게 쿼리를 구현할 수 있다.
+		
+		* if
+		- 동적 쿼리를 구현할 때 기본적으로 사용되는 구문
+		- 특정 조건을 만족할 경우 안의 구문을 쿼리에 포함
+		- 필요로 하는 조건이 1개 이상일 경우 여러개 사용
+		
+		* choose
+		- 자바의 switch, JSTL의 choose구문과 유사하여 주어진 구문 중 한가지만을 수행
+		- 하위 요소인 when, otherwise 요소와 함께 사용
+		
+		* trim
+		- 쿼리 구문의 특정 부분을 없앨 때 사용
+		- prefix로 처음 시작할 단어와 
+			- prefixOverrides로 제거해야할 단어 명시(앞 삭제)
+			- suffixOverrides로 제거해야할 단어 명시(마지막 삭제)
+			
+		- where 또는 set 대신 사용 가능
+		
+		** trim 불편해서 나온 아이들!
+		* where
+		- 기존 쿼리의 WHERE절을 동적으로 구현할 때 사용
+		- 만약 태그 안의 내용이 'AND'나 'OR'로 시작할 경우 'AND'나 'OR'을 제거
+		
+		* set
+		- 기존의 update set 절을 동적으로 구현할 때 사용
+		- set 키워드를 붙이고 불필요한 콤마(,)를 제거
+		- 하나의 쿼리문을 사용하고 싶을때 사용(회원정보수정중 하나만 하고 싶을때), 보통은 전부 입력을 해야하는것을 방지
+		
+		* foreach
+			- 동적 쿼리를 구현할 때 collection에 대한 반복 처리를 제공
+		
+		
+	 where이랑 같음! 
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="id != null">
+			ID LIKE '%' || #{id} || '%'
+		</if>
+		<if test="address != null">
+		둘다 기입을 했을때에 나와야해서 and로 작성!
+			AND ADDRESS LIKE '%' || #{address} || '%'
+		</if>
+		</trim>
+		-->
+		
+		<!-- 
+		<choose>
+			<when test="id != null">
+				ID LIKE '%' || #{id} || '%'
+			</when>
+			<when test="address != null">
+				ADDRESS LIKE '%' || #{address} || '%'
+			</when>
+			<otherwise>
+				name LIKE '%aaa%'
+			</otherwise>
+		</choose>
+		 -->
+	 
+	<select id="findByIdMember" parameterType="list" resultType="Member">
+		SELECT id, password, name, address 
+		FROM member
+		WHERE id IN 
+		<!-- (qq,ss,bb)라서 열고, 콤마 없애주고 속에 있는  item만 필요해서 작성해줌! -->
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
 	</select>
 	
 	<!-- id,password memeber로 담을수있으니까! -->
@@ -40,7 +122,20 @@
 	</select>
 	
 	<update id="updateMember" parameterType="Member">
-		UPDATE member SET id=#{id}, password=#{password}, name=#{name}, address=#{address} WHERE ID = #{id}
+		UPDATE member
+		<trim prefix="SET" suffixOverrides=",">
+			<!-- password가 null 이 아닐때 수정하겠다! -->
+			<if test="password != null">
+			password=#{password},
+			</if>
+			<if test="name != null">
+			name=#{name},
+			</if>
+			<if test="address != null">
+			address=#{address} 
+			</if>
+		</trim>
+		WHERE ID = #{id}
 	</update>
 	
 </mapper>

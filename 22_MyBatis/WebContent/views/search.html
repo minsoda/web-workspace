@@ -6,9 +6,19 @@
 </head>
 <body>
 	<h1>회원 조회</h1>
-	<form action="/find.do">
-		검색할 회원 아이디를 입력해주세요.
-		<input type="text" name="id">
+	<form action="/find.do" method="post">
+		<!-- 아이디 : <input type="text" name="id"><br>
+		주소 : <input type="text" name="addr"><br>  -->
+		
+		<!-- value는 내가 가지고 있는 아이디 사용함! -->
+		<label><input type="checkbox" name="checkId" value="qq">qq
+		</label>
+		<label><input type="checkbox" name="checkId" value="ss">ss
+		</label>
+		<label><input type="checkbox" name="checkId" value="bb">bb
+		</label>
+		
+		
 		<input type="submit" vlaue="조회">
 		
 	</form>

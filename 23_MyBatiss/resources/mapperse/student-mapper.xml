@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studentMapper">
+
+	<association property="department" resultMap="departmentMap"/>
+
+</mapper>
+
+<!-- 
+	resultMap에서 TB_STUDENT, TB_DEPARTMENT
+	id, result - 앞에서 배운건 여기까지였다면, 두 테이블을 연결을 시키려면
+	<association property="department" resultMap="departmentMap"/> 사용
+	
+	showStudent
+ -->

@@ -15,9 +15,15 @@
 	변경할 이름 : <input type="text" name="name" value="${vo.name}"><br>
 	변경할 주소 : <input type="text" name="address" value="${vo.address}"><br>
 	<input type="submit" value="전송하기">
-
 	</form>
 	
+	<h2>비밀번호만 변경</h2>
+	
+	<form action="/update.do" method="post">
+	아이디(변경불가) : <input type="text" name="id" value="${vo.id}" readonly><br>
+	변경할 비밀번호 : <input type="password" name="password" value="${vo.password}"><br>
+	<input type="submit" value="전송하기">
+	</form>
 	
 </body>
 </html>

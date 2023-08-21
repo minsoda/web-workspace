@@ -1,5 +1,6 @@
 package member.model.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,9 +31,11 @@ public class MemberService {
 		return list;
 	}
 	
-	public MemberVO findByIdMember(String id) {
+	// 체크된 정보를 전달해야해서 수정됨!
+	public List<MemberVO> findByIdMember(String[] idList) {
 		SqlSession sqlSession = SqlSessionTemplate.getSqlSession();
-		MemberVO member = MemberDAO.getInstance().findByIdMember(sqlSession, id);
+		List<String> list = Arrays.asList(idList);
+		List<MemberVO> member = MemberDAO.getInstance().findByIdMember(sqlSession, list);
 		sqlSession.close();
 	return member;
 	}
