@@ -63,7 +63,7 @@ public class MemberDAO implements MemberDAOTemplate{
 		Connection conn = getConnection();// 위의  conn 함수 불러와융
 		
 		// 3. Statement 객체 생성(sql문 넣어주세용)
-		String query = "INSERT INTO MEMBER(NAME, AGE, ADDR) VALUES (?, ?, ?)"; // 원래 파일로 빼놨지만 이번은 간단하게 함.
+		String query = "INSERT INTO TEST(NAME, AGE, ADDR) VALUES (?, ?, ?)"; // 원래 파일로 빼놨지만 이번은 간단하게 함.
 		PreparedStatement ps = conn.prepareStatement(query);
 		
 			ps.setString(1, vo.getName());
@@ -81,7 +81,7 @@ public class MemberDAO implements MemberDAOTemplate{
 		Connection conn = getConnection();
 		
 		// 3. Statement 객체 생성(sql문 넣어주세용)
-		String query = "SELECT * FROM MEMBER";
+		String query = "SELECT * FROM TEST";
 		PreparedStatement ps = conn.prepareStatement(query);
 		
 		// 4. 쿼리문 실행
@@ -101,7 +101,7 @@ public class MemberDAO implements MemberDAOTemplate{
 		Connection conn = getConnection();
 		
 		// 3. Statement 객체 생성(sql문 넣어주세용)
-		String query = "SELECT * FROM MEMBER WHERE NAME = ?";
+		String query = "SELECT * FROM TEST WHERE NAME = ?";
 		PreparedStatement ps = conn.prepareStatement(query);
 		ps.setString(1, name);
 		ResultSet rs = ps.executeQuery();

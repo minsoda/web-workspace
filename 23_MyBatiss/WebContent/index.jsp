@@ -9,6 +9,6 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </head>
 <body>
-
+	<input type="text" ><input type="submit" value="검색">
 </body>
 </html>
