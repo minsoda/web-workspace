@@ -38,6 +38,8 @@ public class FindController implements Controller{
 		PrintWriter out = response.getWriter();
 		out.print(json);
 		
+//		System.out.println("list : " + list);
+		// index에서만 하니까, 넘기는게 아니라서 null
 		return null;
 	}
 

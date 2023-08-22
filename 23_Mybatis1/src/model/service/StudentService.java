@@ -16,7 +16,7 @@ public class StudentService {
 		List<StudentVO> student = StudentDAO.getInstance().showStudent(sqlSession, word);
 		//commit 은 나머지만!
 		sqlSession.close();
-//		System.out.println(student);
+//		System.out.println("service : " + student);
 		return student;
 	}
 }
