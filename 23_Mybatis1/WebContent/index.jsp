@@ -81,16 +81,16 @@
             	
             	// list로 담아오는것을 확인 가능!
             	// of 는 값들을 가져오고 in 은 인덱스를 가져오!
-            	// console.log(result);
+            	
             	const result = eval(data.result);
             	let resultHtml = '';
             	for(let item of result){
             		resultHtml += "<tr>" +
-            					"<td" + item.studentNo + "</td>" +		
-            					"<td" + item.studentName + "</td>" +	
-            					"<td" + item.studentAddress + "</td>" +	
-            					"<td" + item.department.departmentName + "</td>" +	
-            					"<td" + item.department.category + "</td>" +	
+            					"<td>" + item.studentNo + "</td>" +		
+            					"<td>" + item.studentName + "</td>" +	
+            					"<td>" + item.studentAddress + "</td>" +	
+            					"<td>" + item.department.departmentName + "</td>" +	
+            					"<td>" + item.department.category + "</td>" +	
             		"</tr>";
             	}
             	$('tbody').html(resultHtml);

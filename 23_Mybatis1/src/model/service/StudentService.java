@@ -18,5 +18,7 @@ public class StudentService {
 		sqlSession.close();
 //		System.out.println("service : " + student);
 		return student;
+		
+		
 	}
 }
