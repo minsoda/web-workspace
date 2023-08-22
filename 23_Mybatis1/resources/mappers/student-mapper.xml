@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studentMapper">
+
+<!-- 
+	resultMap(변수가 다르니까 필요!)에서 TB_STUDENT, TB_DEPARTMENT
+	id, result - 앞에서 배운건 여기까지였다면, 두 테이블을 연결을 시키려면
+	<association property="department" resultMap="departmentMap"/> 사용
+	
+	showStudent
+ -->
+ 
+<resultMap type="Student" id="studentMap">
+		 <id property="studentNo" column="student_no"/>
+		 <result property="studentName" column="student_name"/>
+		 <result property="studentAddress" column="student_address"/>
+		<association property="department"  resultMap="departmentMap"/>
+</resultMap>
+
+ <resultMap type="Department" id="departmentMap">
+ 		 <id property="departmentNo" column="department_no"/>
+		 <result property="departmentName" column="department_name"/>
+		 <result property="category" column="category"/>
+</resultMap>
+
+<!-- index 띄어지는지 확인 먼저! resultmap을 사용했기때문에 resultmap, 아니라면 resulttype-->
+<select id="showStudent" resultMap="studentMap" parameterType="String">
+	SELECT STUDENT_NO, STUDENT_NAME, STUDENT_ADDRESS, DEPARTMENT_NO, DEPARTMENT_NAME, CATEGORY
+	FROM TB_STUDENT 
+	JOIN TB_DEPARTMENT USING (DEPARTMENT_NO)
+	
+	<where>
+		<if test="word != null">
+			student_no like '%' || #{word} || '%'
+			OR student_name like '%' || #{word} || '%'
+			OR student_address like '%' || #{word} || '%'
+			OR department_name like '%' || #{word} || '%'
+			OR category like '%' || #{word} || '%'
+		</if>
+	</where>
+</select>
+
+</mapper>
+
