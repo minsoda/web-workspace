@@ -15,4 +15,5 @@ public interface MemberDAOTemplate {
 	void insertMember(MemberVO vo) throws SQLException;
 	ArrayList<MemberVO> showAllMember() throws SQLException;
 	MemberVO findByNameMember(String name) throws SQLException;
+	
 }

@@ -20,6 +20,5 @@ public interface MemberDAOTemplate {
 	ArrayList<MemberDTO> showAllMember() throws SQLException;
 	
 	void updateMember(MemberDTO dto) throws SQLException;
-
-
+	
 }

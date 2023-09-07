@@ -43,8 +43,6 @@ public class SearchServlet extends HttpServlet {
 			RequestDispatcher rdp = request.getRequestDispatcher("view.jsp");
 			rdp.forward(request, response);
 			
-
-		
 		
 
 	}
